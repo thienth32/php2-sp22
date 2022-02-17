@@ -20,6 +20,11 @@ class QuizController{
         ]);
     }
 
+    public function saveAdd(){
+        Quiz::create($_POST);
+        header('location: ' . BASE_URL . 'bai-quiz');
+    }
+
 
 }
 ?>

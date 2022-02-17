@@ -8,6 +8,9 @@
         <th>Thời gian kết thúc</th>
         <th>Trạng thái</th>
         <th>Đảo câu</th>
+        <th>
+            <a href="{{BASE_URL . 'bai-quiz/tao-moi'}}">Tạo mới</a>
+        </th>
     </thead>
     <tbody>
         @foreach ($quizs as $q)

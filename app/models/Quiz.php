@@ -14,5 +14,9 @@ class Quiz extends Model{
         // belongsTo(Class cha, khóa ngoại của class con, khóa chính của class cha)
         return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
+
+    public function questions(){
+        return $this->hasMany(Question::class, 'quiz_id', 'id');
+    }
 }
 ?>

@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Subject;
 
@@ -40,6 +42,19 @@ class QuizController{
         $model->status = isset($_POST['status']) ? 1 : 0;
         $model->is_shuffle = isset($_POST['is_shuffle']) ? 1 : 0;
         $model->save();
+        header('location: ' . BASE_URL . 'bai-quiz');
+    }
+
+    public function remove($id){
+        $questions = Question::where('quiz_id', $id)->get();
+        foreach ($questions as $q) {
+            $answers = Answer::where('question_id', $q->id)->get();
+            foreach ($answers as $ans) {
+                Answer::destroy($ans->id);
+            }
+            Question::destroy($q->id);
+        }
+        Quiz::destroy($id);
         header('location: ' . BASE_URL . 'bai-quiz');
     }
 

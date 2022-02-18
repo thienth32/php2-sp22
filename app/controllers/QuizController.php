@@ -25,6 +25,15 @@ class QuizController{
         header('location: ' . BASE_URL . 'bai-quiz');
     }
 
+    public function editForm($id){
+        $model = Quiz::find($id); // lấy dữ liệu 1 bản ghi dựa vào id
+        $subjects = Subject::all();
+        return view('quiz.edit-form', [
+            'model' => $model,
+            'subjects' => $subjects
+        ]);
+    }
+
 
 }
 ?>

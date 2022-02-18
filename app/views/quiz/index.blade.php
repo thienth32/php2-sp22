@@ -30,6 +30,9 @@
                 <td>{{$q->end_time}}</td>
                 <td>{{$q->status == 1 ? "Active" : "Inactive"}}</td>
                 <td>{{$q->is_shuffle == 1 ? "Có" : "Không"}}</td>
+                <td>
+                    <a href="{{BASE_URL . 'bai-quiz/cap-nhat/' . $q->id}}">Sửa</a>
+                </td>
             </tr>
         @endforeach
     </tbody>

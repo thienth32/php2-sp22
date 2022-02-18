@@ -22,6 +22,8 @@ function applyRoute($url){
     $router->get('bai-quiz', [QuizController::class, 'index']);
     $router->get('bai-quiz/tao-moi', [QuizController::class, 'addForm']);
     $router->post('bai-quiz/tao-moi', [QuizController::class, 'saveAdd']);
+    $router->get('bai-quiz/cap-nhat/{id}', [QuizController::class, 'editForm']);
+    $router->post('bai-quiz/cap-nhat/{id}', [QuizController::class, 'saveEdit']);
     // các câu hỏi của 1 bài quiz
     // $router->get('cau-hoi', [QuestionController::class, 'index']);
 

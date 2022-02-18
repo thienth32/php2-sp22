@@ -9,4 +9,8 @@ function view($view, $data = []){
                                 BladeOne::MODE_DEBUG);
     echo $blade->run($view, $data);
 }
+
+function convertDateTimeLocal($time){
+    return date('Y-m-d\TH:i:s', strtotime($time));
+}
 ?>

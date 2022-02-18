@@ -15,7 +15,7 @@
     <tbody>
         @foreach ($quizs as $q)
             <tr>
-                <td>{{$loop->iteration + 1}}</td>
+                <td>{{$loop->iteration}}</td>
                 <td>
                     @php
                         $parentSubject = $q->subject;

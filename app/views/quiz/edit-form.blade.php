@@ -7,7 +7,7 @@
         <label for="">Môn học</label>
         <select name="subject_id">
             @foreach ($subjects as $item)
-                <option value="{{$item->id}}">{{$item->name}}</option>
+                <option {{$model->subject_id == $item->id ? "selected" : ""}} value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
         </select>
     </div>

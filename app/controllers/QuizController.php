@@ -34,6 +34,15 @@ class QuizController{
         ]);
     }
 
+    public function saveEdit($id){
+        $model = Quiz::find($id);
+        $model->fill($_POST);
+        $model->status = isset($_POST['status']) ? 1 : 0;
+        $model->is_shuffle = isset($_POST['is_shuffle']) ? 1 : 0;
+        $model->save();
+        header('location: ' . BASE_URL . 'bai-quiz');
+    }
+
 
 }
 ?>

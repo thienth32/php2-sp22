@@ -25,7 +25,9 @@
                         {{$parentSubject->name}}
                     @endif
                 </td>
-                <td>{{$q->name}}</td>
+                <td>
+                    <a href="{{BASE_URL . 'lam-quiz/' . $q->id}}">{{$q->name}}</a>
+                </td>
                 <td>{{count($q->questions)}}</td>
                 <td>{{$q->duration_minutes}}</td>
                 <td>{{$q->start_time}}</td>

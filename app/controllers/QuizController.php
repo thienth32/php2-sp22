@@ -8,15 +8,19 @@ use App\Models\Subject;
 
 class QuizController{
     public function index(){
-        // $quizs = Quiz::all();
-        // $quizs = Quiz::select('quizs.*', 'subjects.name as subject_name')
-        //     ->join('subjects', 'subjects.id', '=', 'quizs.subject_id')
-        //     ->get();
-        // echo "<pre>";
-        // var_dump($quizs);
-        // die;
+        $quizs = Quiz::all();
         return view('quiz.index', [
             'quizs' => $quizs
+        ]);
+    }
+
+    public function lamQuiz($id)
+    {
+        $quiz = Quiz::find($id);
+        $questions = Question::where('quiz_id', $id)->get();
+        return view('quiz.lam-bai', [
+            'quiz' => $quiz,
+            'questions' => $questions
         ]);
     }
 

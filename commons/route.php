@@ -26,6 +26,7 @@ function applyRoute($url){
 
     $router->get('danh-sach-quiz', [QuizController::class, 'index']);
     $router->get('lam-quiz/{id}', [QuizController::class, 'lamQuiz']);
+    $router->post('lam-quiz/{id}', [QuizController::class, 'ketQua']);
     
 
     // // đăng nhập 

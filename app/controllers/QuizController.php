@@ -4,6 +4,8 @@ namespace App\Controllers;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\StudentQuiz;
+use App\Models\StudentQuizDetail;
 use App\Models\Subject;
 
 class QuizController{
@@ -16,12 +18,42 @@ class QuizController{
 
     public function lamQuiz($id)
     {
+        // $user = 5;
+        // $studentQuiz = StudentQuiz::where('student_id', $user)
+        //                     ->where('quiz_id', $id)->first();
+        // if(!$studentQuiz)
         $quiz = Quiz::find($id);
         $questions = Question::where('quiz_id', $id)->get();
         return view('quiz.lam-bai', [
             'quiz' => $quiz,
             'questions' => $questions
         ]);
+    }
+
+    public function ketQua($id)
+    {
+        $dsDapAnDaChon = $_POST;
+        $diem = 0;
+        $stdQuiz = new StudentQuiz();
+        $stdQuiz->student_id = 5;
+        $stdQuiz->quiz_id = $id;
+        $stdQuiz->save();
+
+        foreach ($dsDapAnDaChon as $question => $ans) {
+            $questionId = ltrim($question, 'question_');
+            $stQuizDetail = new StudentQuizDetail();
+            $stQuizDetail->student_quiz_id = $stdQuiz->id;
+            $stQuizDetail->question_id = $questionId;
+            $stQuizDetail->answer_id = $ans;
+            $stQuizDetail->save();
+            $dapan = Answer::find($ans);
+            if($dapan->is_correct == 1){
+                $diem++;
+            }
+        }
+        $stdQuiz->score = round($diem*10/count($dsDapAnDaChon), 2);
+        $stdQuiz->save();
+        echo "Điểm của bạn là: " . $stdQuiz->score;
     }
 
     public function addForm(){
